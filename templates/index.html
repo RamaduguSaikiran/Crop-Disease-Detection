@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crop Disease Detection 🌾</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    
+    <script>
+        window.embeddedChatbotConfig = {
+        chatbotId: "R1kA7wOgPiJTxsIqHL5fJ",
+        domain: "www.chatbase.co"
+        }
+        </script>
+        <script
+        src="https://www.chatbase.co/embed.min.js"
+        chatbotId="R1kA7wOgPiJTxsIqHL5fJ"
+        domain="www.chatbase.co"
+        defer>
+        </script>
+    <div class="rotating-image">
+        <img src="{{ url_for('static', filename='css/IMG_6935.PNG') }}" alt="Rotating Globe">
+    </div>
+    <div class="quote">
+        "Healthy soil is the foundation of a healthy planet. Agriculture is not just about feeding people, but nurturing the Earth."
+    </div>
+    <div class="quote-right">
+        “The farmer is the only man in our economy who buys everything at retail, sells everything at wholesale, and pays the freight both ways.” 
+    </div>
+    <div class="background-overlay"></div>
+
+    
+
+   
+    <div class="container">        
+        <h1 class="glow">🌾 Crop Disease Detection System 🌾</h1>
+        
+        
+        <form method="POST" enctype="multipart/form-data">
+            <label for="language">Choose Language:</label>
+            <select name="language" id="language">
+                <option value="">English</option>
+                <option value="hi">हिंदी</option>
+                <option value="kn">ಕನ್ನಡ</option>
+                <option value="ml">മലയാളം</option>
+                <option value="te">తెలుగు</option>
+                <option value="ta">தமிழ்</option>
+            </select>
+            <input type="file" name="image" accept="image/png, image/jpeg" required>
+            <button type="submit" class="btn animate-btn">Detect Disease</button>
+        </form>
+
+       
+        {% if image_data %}
+            <div class="box image-box animate-box">
+                <h2>Uploaded Image</h2>
+                <img src="data:image/jpeg;base64,{{ image_data }}" alt="Uploaded Image" class="uploaded-img animate-img">
+            </div>
+        {% endif %}
+
+        
+        {% if result %}
+            <div class="box result-box animate-box">
+                <h2 id="prediction">Prediction: {{ result }}</h2>
+                <h3 id="confidence">Confidence: {{ confidence }}</h3>
+            </div>
+            <div class="box description-box animate-box">
+                <h4>Description:</h4>
+                <p id="description">{{ description }}</p>
+            </div>
+            <div class="box precautions-box animate-box">
+                <h4>Precautions:</h4>
+                <p id="precautions">{{ precautions }}</p>
+            </div>
+        {% endif %}
+    </div>
+    
+    
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
