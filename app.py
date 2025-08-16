@@ -8,7 +8,8 @@ import io
 import base64
 import os
 from gtts import gTTS
-from googletrans import Translator
+#from googletrans import Translator
+from deep_translator import GoogleTranslator
 
 app = Flask(__name__)
 
@@ -17,12 +18,10 @@ model = models.load_model("C:/Users/Naga Sai/Desktop/Agriculture/disease detecti
 
 dis = list(desc.disease.values)
 
-translator = Translator()
+#translator = Translator()
 
 def translate_text(text, target_language):
-    
-    translated = translator.translate(text, dest=target_language)
-    return translated.text
+    return GoogleTranslator(source='auto', target=target_language).translate(text)
 
 def image_classifier(inp):
     inp = image.resize(inp, (256, 256))
